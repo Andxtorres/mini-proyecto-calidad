@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
+import io.sentry.Sentry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +37,16 @@ public class TodoController {
     Todo findById(@PathVariable("id") int id){
         Todo todo=todoService.getById(id);
         return todo;
+    }
+
+    @GetMapping("/error")
+
+    String generateError(){
+        try {
+            throw new Exception("This is a test.");
+        } catch (Exception e) {
+            Sentry.captureException(e);
+        }
+        return "Error enviado";
     }
 }
