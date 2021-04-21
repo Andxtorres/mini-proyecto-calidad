@@ -25,5 +25,6 @@ public class TodoRepositoryTest {
 
         List<Todo> todoList=todoRepository.findAll();
         assertEquals(4,todoRepository.findAll().size());
+        assertEquals(1,todoList.get(0).getId());
     }
 }

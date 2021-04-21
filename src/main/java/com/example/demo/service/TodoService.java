@@ -21,6 +21,7 @@ public class TodoService {
     }
 
     public Todo getById(int id){
+
         return todoRepository.findById(id).get();
     }
 
@@ -39,5 +40,13 @@ public class TodoService {
 
     public int suma(int a,int b){
         return a+b;
+    }
+
+    public void deleteTodo(int id){
+        todoRepository.deleteById(id);
+    }
+
+    public Todo getByTitle(String title){
+        return todoRepository.findByTitle(title);
     }
 }
